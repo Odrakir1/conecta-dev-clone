@@ -21,7 +21,7 @@ function Header(props){
                 <div className={styles.grow}></div>
 
                 <div className={styles.userSection}>
-                    <Button style={{marginRight:10}} size="small" variant="contained" color="secondary" className={styles.spacing}>
+                    <Button style={{marginRight:10}} size="small" variant="contained" color="primary" className={styles.spacing}>
                         Novo post!
                     </Button>
                     
