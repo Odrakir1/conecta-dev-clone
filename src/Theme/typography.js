@@ -22,11 +22,11 @@ export default {
     h5: {
       fontWeight: 500,
       fontSize: 16,
-      letterSpacing: '-0.05px'
+      letterSpacing: '-0.03px'
     },
     h6: {
       fontWeight: 500,
       fontSize: 14,
-      letterSpacing: '-0.05px'
+      letterSpacing: '-0.03px'
     }
   }

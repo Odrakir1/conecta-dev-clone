@@ -14,7 +14,7 @@ function Header(props){
     const styles = useStyles();
 
     return(
-        <AppBar className={styles.header} position="fixed" color="inherit" elevation={0}>
+        <AppBar className={styles.header} position="fixed" color="inherit" /* elevation={0} */>
             <Toolbar>
                 <img src="/images/logo.png" alt="logo conecta dev" className={styles.img}/>
                 
