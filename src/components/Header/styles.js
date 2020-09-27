@@ -1,18 +1,24 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = makeStyles({
-    header:{
+    /* header:{
         background: "red",
         width: "100%",
         position: "fixed",
+    }, */
+    img:{
+        maxHeight:55,
     },
-    toolbar: {
+    grow:{
+        flexGrow:1
+    },
+    userSection:{
         display:"flex",
-        alignItems:"center",
-        height: "46px",
-        justifyContent:"space-between",
-        margin: "0 12px"
+        alignItems:"center"
     },
+    spacing:{
+        marginRight:10
+    }
 });
 
 export default styles;

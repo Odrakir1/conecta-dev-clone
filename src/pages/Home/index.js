@@ -3,6 +3,7 @@ import useStyles from './styles';
 import Navbar from '../../components/Navbar';
 import Feed from '../../components/Feed';
 import Header from '../../components/Header';
+import { Container,Box } from '@material-ui/core';
 
 
 function Home(props){
@@ -10,12 +11,15 @@ function Home(props){
     const styles = useStyles();
 
     return (
-        <div>
+        <div className={styles.root}>
             <Header/>
-
             <main className={styles.main}>
-                <Navbar/>
-                <Feed/>
+                <Container maxWidth="lg">
+                    <Box display="flex">
+                        <Navbar/>
+                        <Feed/>
+                    </Box>
+                </Container>
             </main>
 
         </div>

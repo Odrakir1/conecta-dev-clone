@@ -1,12 +1,24 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme)=>({
+    root:{
+        padding:theme.spacing(2),
+        width:275,
+        marginTop:50
+    },
+    button:{
+        width:"100%"
+    }
+}))
+
+/* const useStyles = makeStyles({
     navbar:{
-        background: "blue",
-        width: "350px",
-        padding:"24px"
+        width: 275,
+        padding:16,
+
     }
 
-})
+}) */
 
 export default useStyles;
