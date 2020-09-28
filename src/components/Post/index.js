@@ -21,7 +21,7 @@ function Post({post}){
     const styles = useStyles();
 
     return(
-        <Card key={post.id} className={styles.root}>
+        <Card className={styles.root}>
             <CardHeader avatar={<Avatar src={post.author.avatar}/>} 
                 title={<Typography variant="h6">{post.title}</Typography>}
                 subheader={

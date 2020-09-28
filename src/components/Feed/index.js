@@ -69,7 +69,7 @@ function Feed(props){
     return(
         <div className={styles.root}>
             {posts.map((item)=>(
-                <Post post={item}/>
+                <Post key={item.id} post={item}/>
             ))}
         </div>
     );
