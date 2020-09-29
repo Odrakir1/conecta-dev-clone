@@ -1,24 +1,36 @@
 import { Avatar, Button, Link, TextField, Typography } from '@material-ui/core';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import useStyles from './style';
 import {Grid,Box} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-/* import {useNavigate} from 'react-router-dom'; */
+import {useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-//import axios from 'axios';
+import authService from '../../services/authService';
  
 
 function SignIn(props){
 
+    const [requestError,setRequestError] = useState('');
+
     const styles = useStyles();
 
-    /* const navigate = useNavigate(); */
+    const navigate = useNavigate();
 
     const { register, handleSubmit, errors } = useForm();
-    console.log(errors)
+    
     const onSubmit = data =>{
-        console.log(data)
+        
+        authService.signIn(data)
+        .then(response=>{
+            navigate("/"); 
+        }).catch(err=>{
+            setRequestError(err.response.data.response)
+        });
     }
+
+    useEffect(()=>{
+        console.log(errors)
+    },[errors]);
 
     return(
 
@@ -50,8 +62,15 @@ function SignIn(props){
                     <Typography variant="h5">
                         Acesso
                     </Typography>
-
+                    {requestError && <Typography variant="body2">{requestError}</Typography>}
                     <form className={styles.form} onSubmit={handleSubmit((onSubmit))}>
+                        {errors.email 
+                        && 
+                        <Grid container justify="center">
+                            <Typography variant="body2">
+                                {errors.email.message}
+                            </Typography>    
+                        </Grid>}
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -63,12 +82,20 @@ function SignIn(props){
                             autoFocus
                             label="Email"
                             inputRef={
-                                register(
-                                    { required: "Insira seu email",
+                                register({ 
+                                    required: "Insira seu email",
                                     pattern:{value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                                     message: "Insira um endereço de email válido",
                                 } })}
                         />
+
+                        {errors.password 
+                        && 
+                        <Grid container justify="center">
+                            <Typography variant="body2">
+                                {errors.password}
+                            </Typography>    
+                        </Grid>}
 
                         <TextField
                             variant="outlined"
@@ -81,7 +108,9 @@ function SignIn(props){
                             label="Senha"
                             type="password"
                             autoComplete="current-password"
-                            inputRef={register}
+                            inputRef={register({
+                                required: true
+                            })}
                         />
 
                         <Button
@@ -112,25 +141,6 @@ function SignIn(props){
         </Grid>
 
 
-      /* <div className={styles.container}>
-        <div className={styles.left}>
-            <Typography variant='h3'>
-                Conectando desenvolvedores de software num só lugar!
-            </Typography>
-            
-            <Typography variante='body2'>
-                Registre-se gratuitamente e expanda suas conexões.
-            </Typography>
-        </div>  
-
-        <div className={styles.right}>
-            <form className={styles.form}>
-                <h4>Acesso</h4>
-                <input/>
-                <input/>
-            </form>
-        </div>  
-      </div>   */
     );
 }
 

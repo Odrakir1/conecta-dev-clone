@@ -12,6 +12,8 @@ Route
 import {ThemeProvider} from '@material-ui/core/styles';
 import theme from '../src/Theme';
 
+import './mock';
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
