@@ -14,11 +14,18 @@ import theme from '../src/Theme';
 
 import './mock';
 
+import GuestRoutes from './routes/guestRoutes';
+
+import {Provider} from 'react-redux';
+import store from './stores/store';
+
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
       <Router>
         <Routes>
+          <GuestRoutes path="/sign-in" element={<SignIn/>} />
           <Route path="/" element={<Home/>} />
           <Route path="/sign-in" element={<SignIn/>} />
           <Route path="*" element={<h1>Not found 404</h1>} />
@@ -27,7 +34,7 @@ function App() {
       {/* <Home/>
         <SignIn/> */}
     </ThemeProvider>
-
+    </Provider>
   );
 }
 

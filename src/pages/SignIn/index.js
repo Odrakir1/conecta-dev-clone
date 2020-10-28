@@ -6,11 +6,16 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import authService from '../../services/authService';
- 
+import {useSelector,useDispatch} from 'react-redux';
+import logIn from '../../stores/actions/user';
+
 
 function SignIn(props){
 
+    const user = useSelector(state => state);
+    console.log(user);
     const [requestError,setRequestError] = useState('');
+    const dispatch = useDispatch();
 
     const styles = useStyles();
 
@@ -19,12 +24,12 @@ function SignIn(props){
     const { register, handleSubmit, errors } = useForm();
     
     const onSubmit = data =>{
-        
         authService.signIn(data)
         .then(response=>{
+            dispatch(logIn(response.email,response.password));
             navigate("/"); 
         }).catch(err=>{
-            setRequestError(err.response.data.response)
+            setRequestError(err.response.data?.response)
         });
     }
 
