@@ -8,10 +8,14 @@ import Mock from '../utils/mock';
  */
 
 Mock.onPost('/api/login').reply((config)=>{
-    const {email, password} = JSON.parse(config.data);
+    
+    
+    const data = JSON.parse(config.data);
+    
 
-    if(email !== 'ricardo_@ricardo.com' || password !== 'qwerty123')
+    if(data.email !== 'ricardo_@ricardo.com' || data.password !== 'qwerty123'){
         return [400,{response:"Credenciais não encontradas."}];
+    }
 
-    return [200,{user:{email:email,password:password}}];
+    return [200,{user:{email:data.email,password:data.password}}];
 });

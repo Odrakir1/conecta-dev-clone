@@ -13,7 +13,6 @@ import logIn from '../../stores/actions/user';
 function SignIn(props){
 
     const user = useSelector(state => state);
-    console.log(user);
     const [requestError,setRequestError] = useState('');
     const dispatch = useDispatch();
 
@@ -29,7 +28,7 @@ function SignIn(props){
             dispatch(logIn(response.email,response.password));
             navigate("/"); 
         }).catch(err=>{
-            setRequestError(err.response.data?.response)
+            setRequestError(err.response?.data?.response)
         });
     }
 

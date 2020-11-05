@@ -6,12 +6,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { SvgIcon } from '@material-ui/core';
 import { Bell } from 'react-feather';
 import Avatar from '@material-ui/core/Avatar';
-
+import {useSelector} from 'react-redux';
 
 
 function Header(props){
 
     const styles = useStyles();
+
+    const user = useSelector(state => state);
+    console.log(user)
 
     return(
         <AppBar className={styles.header} position="fixed" color="inherit" /* elevation={0} */>

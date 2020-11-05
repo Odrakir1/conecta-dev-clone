@@ -1,10 +1,16 @@
 import Axios from '../utils/axios';
 
+
 class AuthService{
 
-    signIn = ({email,password}) => {
+    signIn = (data) => {
+        
         return new Promise((resolve,reject)=>{
-            Axios.post('/api/login',{email,password})
+            Axios.post('/api/login',JSON.stringify(data)/* ,{
+                headers: {
+                    'content-type': 'application/json',
+               }
+            } */)
             .then(response => {
                 if(response.data.user){
                     resolve(response.data.user)
@@ -16,7 +22,6 @@ class AuthService{
                 }
 
             }).catch(err =>{
-                console.log("erro",err)
                 reject(err)
             })
         })
